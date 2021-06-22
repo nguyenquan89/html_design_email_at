@@ -100,7 +100,7 @@
 						html =`<table data-draggable class="b1-section wrap dashed-box">
 									<tbody class="wrap">
 										<tr>
-											<td class="dashed-box" id="b1-section_${number++}"></td>
+											<td class="b1-section dashed-box" id="b1-section_${number++}"></td>
 										</tr>
 										<tr>
 											<td><div class="remove-section" data-remove_item>
@@ -131,9 +131,9 @@
 						html =`<table data-draggable class="wrap dashed-box">
 									<tbody class="wrap">
 										<tr class="wrap default">
-											<td class="b3-section dashed-box" id="b3-section_${number++}"></td>
-											<td class="b3-section dashed-box" id="b3-section_${number++}"></td>
-											<td class="b3-section dashed-box" id="b3-section_${number++}"></td>
+											<td class="b3-section dashed-box" data-id id="b3-section_${number++}"></td>
+											<td class="b3-section dashed-box" data-id id="b3-section_${number++}"></td>
+											<td class="b3-section dashed-box" data-id id="b3-section_${number++}"></td>
 										</tr>
 										<tr>
 											<td><div class="remove-section" data-remove_item>
@@ -249,9 +249,9 @@
 			$('body').on('click', '*[data-remove_parent]', function(e){
 				$(this).closest('*[data-table_parent]').remove();
 			});
-			$( function() {
-			    $( "#b3-section_0" ).sortable();
-			    $( "#b3-section_0" ).disableSelection();
+			$(function(element) {
+			    $(element).sortable();
+			    $(element ).disableSelection();
 			});
 		});
 	</script>
