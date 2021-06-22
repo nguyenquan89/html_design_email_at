@@ -95,7 +95,13 @@ img {
 	}
 }
 *[data-draggable] {
-	margin-bottom: 5px;
+	margin-bottom: 20px;
+	&:last-child {
+		margin-bottom: 10px;
+	}
+	&:first-child {
+		margin-top: 10px;
+	}
 }
 .b2-section {
 	width: calc((100% - 5px)/2);

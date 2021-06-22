@@ -76,7 +76,11 @@ img {
   object-fit: contain; }
 
 *[data-draggable] {
-  margin-bottom: 5px; }
+  margin-bottom: 20px; }
+  *[data-draggable]:last-child {
+    margin-bottom: 10px; }
+  *[data-draggable]:first-child {
+    margin-top: 10px; }
 
 .b2-section {
   width: calc((100% - 5px)/2);
