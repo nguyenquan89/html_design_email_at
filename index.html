@@ -6,18 +6,184 @@
   	<meta http-equiv="X-UA-Compatible" content="IE=edge">
   	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 	<link rel="stylesheet" href="public/assets/libs/font-awesome/font-awesome.min.css">
+	<link rel="stylesheet" href="public/assets/libs/grapesjs/css/grapes.min.css">
 	<link rel="stylesheet" href="public/assets/css/style.css">
 	<link rel="preconnect" href="https://fonts.gstatic.com">
 	<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
 </head>
 <body>
-	<h1>Test code</h1>
+	<section class="wrap">
+		<div class="wrap design-mail" id="draggable-main">
+			<div class="gjs-dashed dashed-box">
+				<div class="gjs-dashed__content" id="sortable">
+					<table class="container-dashed dashed-box" role="presentation" align="center" cellspacing="0" cellpadding="0">
+						<body>
+							<tr class="dashed-box">
+								<td class="wrap dashed-box" id="append-content" style="float: left;">
+									<!-- Content append -->
+								</td>
+							</tr>
+						</body>
+					</table>
+					<div class="btn action-pin">
+						<ul class="action-pin__ul">
+							<li class="action-pin__ul-li"><i class="fa fa-arrow-up" aria-hidden="true"></i></li>
+							<li class="action-pin__ul-li"><i class="fa fa-arrows" aria-hidden="true"></i></li>
+							<li class="action-pin__ul-li"><i class="fa fa-clone" aria-hidden="true"></i></li>
+							<li class="action-pin__ul-li"><i class="fa fa-trash-o" aria-hidden="true"></i></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="gjs-blocks">
+				<div class="gjs-blocks__content wrap">
+					<!-- select box parent-->
+					<div class="parent wrap default">
+						<div class="parent-title wrap">
+							<p>select box parent</p>
+						</div>
+						<div class="parent-item wrap">
+							<div id="b1-section" class="item-gird bg-item font-item color-item-hover" data-block="b1-section">
+								<div class="gjs-label">1 section</div>
+							</div>
+							<div id="b2-section" class="item-gird bg-item font-item color-item-hover" data-block="b2-section">
+								<div class="gjs-label">1/2 section</div>
+							</div>
+							<div id="b3-section" class="item-gird bg-item font-item color-item-hover" data-block="b3-section">
+								<div class="gjs-label">1/3 section</div>
+							</div>
+							<div id="b37-section" class="item-gird bg-item font-item color-item-hover" data-block="b37-section">
+								<div class="gjs-label">3/7 section</div>
+							</div>
+						</div>
+					</div>
+					<!-- select box children -->
+					<div class="children wrap default">
+						<div class="children-title wrap">
+							select box children
+						</div>
+						<div class="children-item wrap">
+							<div id="button-section" class="item-gird bg-item font-item color-item-hover" data-block="button-section">
+								<div class="gjs-label">Button</div>
+							</div>
+							<div id="h1p-section" class="item-gird bg-item font-item color-item-hover" data-block="h1p-section">
+								<div class="gjs-label">Text section</div>
+							</div>
+							<div id="image-section" class="item-gird bg-item font-item color-item-hover" data-block="image-section">
+								<div class="gjs-label">Image</div>
+							</div>
+							<div id="text-section" class="item-gird bg-item font-item color-item-hover" data-block="text-section">
+								<div class="gjs-label">Text</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
 </body>
 	<script type="text/javascript" src="public/assets/js/jquery-3.5.1.min.js"></script>
 	<script type="text/javascript" src="public/assets/js/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="public/assets/libs/grapesjs/grapes.min.js"></script>
 	<script type="text/javascript">
 		$(document).ready(function(e){
-
+			var number =0;
+			$('body').on('click','*[data-block]', function(e){
+				content_data = $(this).data('block');
+				alert(content_data);
+				switch (content_data) {
+					case('b1-section'):
+						html =`<table data-draggable class="b1-section wrap dashed-box">
+									<tbody class="wrap">
+										<tr>
+											<td class="dashed-box" id="b1-section_${number++}"></td>
+										</tr>
+									</tbody>
+								</table>`;
+						$('#append-content').append(html);
+						break;
+					case('b2-section'):
+						html =`<table data-draggable class="wrap dashed-box">
+									<tbody class="wrap">
+										<tr class="wrap default">
+											<td class="b2-section dashed-box" id="b2-section_${number++}"></td>
+											<td class="b2-section dashed-box" id="b2-section_${number++}"></td>
+										</tr>
+									</tbody>
+								</table>`;
+						$('#append-content').append(html);
+						break;
+					case('b3-section'):
+						html =`<table data-draggable class="wrap dashed-box">
+									<tbody class="wrap">
+										<tr class="wrap default">
+											<td class="b3-section dashed-box" id="b3-section_${number++}"></td>
+											<td class="b3-section dashed-box" id="b3-section_${number++}"></td>
+											<td class="b3-section dashed-box" id="b3-section_${number++}"></td>
+										</tr>
+									</tbody>
+								</table>`;
+						$('#append-content').append(html);
+						break;
+					case('b37-section'):
+						html =``;
+						$('#append-content').append(html);
+						break;
+					case('button-section'):
+						html =`<table data-draggable class="button-section wrap dashed-box">
+									<tbody class="wrap">
+										<tr>
+											<td class="button dashed-box"><a class="wrap" href="#">Button</a></td>
+										</tr>
+									</tbody>
+								</table>`;
+						$('#append-content').append(html);
+						break;
+					case('h1p-section'):
+						html =`<table data-draggable class="h1p-section dashed-box">
+									<tbody>
+										<tr>
+											<td class="title-text dashed-box">
+												<h3>Title Text h3</h3>
+											</td>
+										</tr>
+										<tr>
+											<td class="text-content dashed-box">
+												<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+											</td>
+										</tr>
+									</tbody>
+								</table>`;
+						$('#append-content').append(html);
+						break;
+					case('image-section'):
+						html =`<table data-draggable class="image-section wrap dashed-box">
+									<tbody class="wrap">
+										<tr align="center">
+											<td class="dashed-box">
+												<img src="public/assets/img/no-image.jpg">
+											</td>
+										</tr>
+									</tbody>
+								</table>`;
+						$('#append-content').append(html);
+						break;
+					case('text-section'):
+						html =`<table data-draggable class="text-section wrap dashed-box">
+									<tbody class="dashed-box">
+										<tr>
+											<td class="dashed-box"><h2>Text title h2</h2></td>
+										</tr>
+									</tbody>
+								</table>`;
+						$('#append-content').append(html);
+						break;
+				}
+			});
+			$( function() {
+			    $( "#append-content" ).sortable();
+			    $( "#append-content" ).disableSelection();
+			});
 		});
 	</script>
 </html>

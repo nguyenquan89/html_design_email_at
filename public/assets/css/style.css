@@ -1,0 +1,170 @@
+* {
+  margin: 0;
+  padding: 0;
+  outline: none;
+  box-sizing: border-box; }
+
+body {
+  font-size: 14px;
+  min-height: 100vh;
+  font-family: 'Roboto', sans-serif;
+  box-sizing: border-box; }
+
+li {
+  list-style-type: none; }
+
+a {
+  text-decoration: none; }
+
+img {
+  max-width: 100%;
+  max-height: 100%;
+  margin: auto;
+  display: block; }
+
+.wrap {
+  width: 100%;
+  margin: 0;
+  padding: 0; }
+
+.container {
+  width: 1200px;
+  margin: 0;
+  padding: 0; }
+
+.default {
+  display: flex;
+  flex-wrap: wrap; }
+
+.dashed-box {
+  border: 1px dashed #999;
+  padding: 3px; }
+
+#b1-section:before {
+  content: 'Q'; }
+
+#b2-section:before {
+  content: 'W'; }
+
+#b3-section:before {
+  content: 'E'; }
+
+#b37-section:before {
+  content: 'R'; }
+
+#button-section:before {
+  content: 'B'; }
+
+#h1p-section:before {
+  content: 'y'; }
+
+#image-section:before {
+  content: 'I'; }
+
+#text-section:before {
+  content: 'o'; }
+
+.color-item-hover {
+  color: #bbbbbb; }
+  .color-item-hover:hover {
+    color: #35d7bb; }
+
+.bg-item {
+  background-color: #373d49; }
+
+.image-section img {
+  object-fit: contain; }
+
+*[data-draggable] {
+  margin-bottom: 5px; }
+
+.b2-section {
+  width: calc((100% - 5px)/2);
+  float: left; }
+  .b2-section:nth-child(2n+2) {
+    margin-left: 5px; }
+
+.b3-section {
+  width: calc((100% - 10px)/3);
+  float: left; }
+  .b3-section:nth-child(3n+2) {
+    margin-right: 5px;
+    margin-left: 5px; }
+
+.button-section .button {
+  background: #cd0000;
+  width: 100%;
+  border-radius: 5px;
+  text-align: center;
+  padding: 5px 10px; }
+.button-section a {
+  color: #fff;
+  padding: 5px 10px;
+  font-size: 16px; }
+
+#append-content {
+  min-height: 100%; }
+
+.design-mail {
+  height: 100vh; }
+  .design-mail .gjs-dashed {
+    width: calc(100% - 280px);
+    float: left;
+    padding: 3px;
+    height: 100vh;
+    overflow: hidden; }
+    .design-mail .gjs-dashed__content {
+      width: 100%;
+      border: 2px solid #3b97e3;
+      padding: 2px 20px;
+      position: relative;
+      height: 100%; }
+      .design-mail .gjs-dashed__content .container-dashed {
+        width: 700px;
+        margin: 50px auto; }
+      .design-mail .gjs-dashed__content .action-pin {
+        position: absolute;
+        top: 0;
+        right: 0;
+        padding: 5px;
+        background: #3b97e3; }
+        .design-mail .gjs-dashed__content .action-pin__ul-li {
+          display: inline-block;
+          color: #fff;
+          margin-right: 5px;
+          cursor: pointer; }
+          .design-mail .gjs-dashed__content .action-pin__ul-li:last-child {
+            margin-right: 0; }
+  .design-mail .gjs-blocks {
+    width: 280px;
+    float: right;
+    background: #444;
+    padding: 10px;
+    height: 100%; }
+    .design-mail .gjs-blocks__content {
+      height: 100%; }
+      .design-mail .gjs-blocks__content .parent, .design-mail .gjs-blocks__content .children {
+        margin-top: 20px; }
+        .design-mail .gjs-blocks__content .parent-title, .design-mail .gjs-blocks__content .children-title {
+          text-transform: uppercase;
+          font-weight: bold;
+          color: #fff;
+          margin-bottom: 10px; }
+        .design-mail .gjs-blocks__content .parent-item .item-gird, .design-mail .gjs-blocks__content .children-item .item-gird {
+          width: calc((100% - 10px)/2);
+          float: left;
+          transition: all 0.6s;
+          text-align: center;
+          border: 2px solid rgba(0, 0, 0, 0.2);
+          margin-bottom: 10px;
+          cursor: pointer;
+          height: 100px; }
+          .design-mail .gjs-blocks__content .parent-item .item-gird:nth-child(2n+2), .design-mail .gjs-blocks__content .children-item .item-gird:nth-child(2n+2) {
+            margin-left: 10px; }
+        .design-mail .gjs-blocks__content .parent-item .font-item:before, .design-mail .gjs-blocks__content .children-item .font-item:before {
+          display: block;
+          font: normal normal normal 14px font3336;
+          text-rendering: auto;
+          -webkit-font-smoothing: antialiased;
+          -moz-osx-font-smoothing: grayscale;
+          font-size: 5em; }
