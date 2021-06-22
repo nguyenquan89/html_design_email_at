@@ -21,6 +21,7 @@
 							<tr class="dashed-box">
 								<td class="wrap dashed-box" id="append-content" style="float: left;">
 									<!-- Content append -->
+									
 								</td>
 							</tr>
 						</body>
@@ -90,13 +91,17 @@
 			var number =0;
 			$('body').on('click','*[data-block]', function(e){
 				content_data = $(this).data('block');
-				alert(content_data);
 				switch (content_data) {
 					case('b1-section'):
 						html =`<table data-draggable class="b1-section wrap dashed-box">
 									<tbody class="wrap">
 										<tr>
 											<td class="dashed-box" id="b1-section_${number++}"></td>
+										</tr>
+										<tr>
+											<td><div class="remove-section" data-remove_item>
+												<i class="fa fa-trash-o" aria-hidden="true"></i>
+											</div></td>
 										</tr>
 									</tbody>
 								</table>`;
@@ -109,6 +114,11 @@
 											<td class="b2-section dashed-box" id="b2-section_${number++}"></td>
 											<td class="b2-section dashed-box" id="b2-section_${number++}"></td>
 										</tr>
+										<tr>
+											<td><div class="remove-section" data-remove_item>
+												<i class="fa fa-trash-o" aria-hidden="true"></i>
+											</div></td>
+										</tr>
 									</tbody>
 								</table>`;
 						$('#append-content').append(html);
@@ -120,6 +130,11 @@
 											<td class="b3-section dashed-box" id="b3-section_${number++}"></td>
 											<td class="b3-section dashed-box" id="b3-section_${number++}"></td>
 											<td class="b3-section dashed-box" id="b3-section_${number++}"></td>
+										</tr>
+										<tr>
+											<td><div class="remove-section" data-remove_item>
+												<i class="fa fa-trash-o" aria-hidden="true"></i>
+											</div></td>
 										</tr>
 									</tbody>
 								</table>`;
@@ -134,6 +149,11 @@
 									<tbody class="wrap">
 										<tr>
 											<td class="button dashed-box"><a class="wrap" href="#">Button</a></td>
+										</tr>
+										<tr>
+											<td><div class="remove-section" data-remove_item>
+												<i class="fa fa-trash-o" aria-hidden="true"></i>
+											</div></td>
 										</tr>
 									</tbody>
 								</table>`;
@@ -152,20 +172,30 @@
 												<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
 											</td>
 										</tr>
+										<tr>
+											<td><div class="remove-section" data-remove_item>
+												<i class="fa fa-trash-o" aria-hidden="true"></i>
+											</div></td>
+										</tr>
 									</tbody>
 								</table>`;
 						$('#append-content').append(html);
 						break;
 					case('image-section'):
 						html =`<table data-draggable class="image-section wrap dashed-box">
-									<tbody class="wrap">
-										<tr align="center">
-											<td class="dashed-box">
-												<img src="public/assets/img/no-image.jpg">
-											</td>
-										</tr>
-									</tbody>
-								</table>`;
+								<tbody class="wrap">
+									<tr align="center">
+										<td class="dashed-box">
+											<img src="public/assets/img/no-image.jpg">
+										</td>
+									</tr>
+									<tr>
+										<td><div class="remove-section" data-remove_item>
+											<i class="fa fa-trash-o" aria-hidden="true"></i>
+										</div></td>
+									</tr>
+								</tbody>
+							</table>`;
 						$('#append-content').append(html);
 						break;
 					case('text-section'):
@@ -173,6 +203,11 @@
 									<tbody class="dashed-box">
 										<tr>
 											<td class="dashed-box"><h2>Text title h2</h2></td>
+										</tr>
+										<tr>
+											<td><div class="remove-section" data-remove_item>
+												<i class="fa fa-trash-o" aria-hidden="true"></i>
+											</div></td>
 										</tr>
 									</tbody>
 								</table>`;
@@ -183,6 +218,19 @@
 			$( function() {
 			    $( "#append-content" ).sortable();
 			    $( "#append-content" ).disableSelection();
+			});
+			$('body').on('mouseover', '*[data-draggable]', function(e) {
+				element = $(this);
+				$(this).addClass('selected-item');
+				element.find('.remove-section').css('display','block');
+			});
+			$('body').on('mouseout', '*[data-draggable]', function(e) {
+				element = $(this);
+				$(this).removeClass('selected-item');
+				element.find('.remove-section').css('display','none');
+			});
+			$('body').on('click', '*[data-remove_item]', function(e){
+				$(this).closest('*[data-draggable]').remove();
 			});
 			$( function() {
 			    $( "#b3-section_0" ).sortable();

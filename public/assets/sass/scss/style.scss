@@ -139,6 +139,22 @@ img {
 #append-content {
 	min-height: 100%;
 }
+.selected-item {
+	outline: 2px solid #3b97e3 !important;
+    outline-offset: -3px;
+    position: relative;
+}
+.remove-section {
+	display: none;
+	position: absolute;
+    top: -20px;
+    right: 0;
+    padding: 2px 10px;
+    background: #3b97e3;
+    color: #fff;
+    border-radius: 2px 2px 0 0;
+    cursor: pointer;
+}
 .design-mail {
 	height: 100vh;
 	.gjs-dashed {
