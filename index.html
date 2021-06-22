@@ -16,7 +16,7 @@
 		<div class="wrap design-mail" id="draggable-main">
 			<div class="gjs-dashed dashed-box">
 				<div class="gjs-dashed__content" id="sortable">
-					<table class="container-dashed dashed-box" role="presentation" align="center" cellspacing="0" cellpadding="0">
+					<table data-table_parent class="container-dashed dashed-box" role="presentation" align="center" cellspacing="0" cellpadding="0">
 						<body>
 							<tr class="dashed-box">
 								<td class="wrap dashed-box" id="append-content" style="float: left;">
@@ -24,12 +24,16 @@
 									
 								</td>
 							</tr>
+							<tr>
+								<td><div class="remove-section" data-remove_parent>
+									<i class="fa fa-trash-o" aria-hidden="true"></i>
+								</div></td>
+							</tr>
 						</body>
 					</table>
 					<div class="btn action-pin">
 						<ul class="action-pin__ul">
-							<li class="action-pin__ul-li"><i class="fa fa-arrow-up" aria-hidden="true"></i></li>
-							<li class="action-pin__ul-li"><i class="fa fa-arrows" aria-hidden="true"></i></li>
+							<li class="action-pin__ul-li" data-save_content title="Lưu"><i class="fa fa-floppy-o" aria-hidden="true"></i></li>
 							<li class="action-pin__ul-li"><i class="fa fa-clone" aria-hidden="true"></i></li>
 							<li class="action-pin__ul-li"><i class="fa fa-trash-o" aria-hidden="true"></i></li>
 						</ul>
@@ -229,12 +233,34 @@
 				$(this).removeClass('selected-item');
 				element.find('.remove-section').css('display','none');
 			});
+			$('body').on('mouseover', '*[data-table_parent]', function(e) {
+				element = $(this);
+				$(this).addClass('selected-item');
+				element.find('.remove-section').css('display','block');
+			});
+			$('body').on('mouseout', '*[data-table_parent]', function(e) {
+				element = $(this);
+				$(this).removeClass('selected-item');
+				element.find('.remove-section').css('display','none');
+			});
 			$('body').on('click', '*[data-remove_item]', function(e){
 				$(this).closest('*[data-draggable]').remove();
+			});
+			$('body').on('click', '*[data-remove_parent]', function(e){
+				$(this).closest('*[data-table_parent]').remove();
 			});
 			$( function() {
 			    $( "#b3-section_0" ).sortable();
 			    $( "#b3-section_0" ).disableSelection();
+			});
+		});
+	</script>
+	<!-- Copy data html email content -->
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$('body').on('click', '*[data-save_content]', function(e){
+				html = $(this).closest('#draggable-main').find('#sortable').html();
+				$(this).closest('#draggable-main').find('#sortable').prepend(html);
 			});
 		});
 	</script>
