@@ -19,7 +19,7 @@
 					<table data-table_parent class="container-dashed dashed-box" role="presentation" align="center" cellspacing="0" cellpadding="0">
 						<body>
 							<tr class="dashed-box">
-								<td class="wrap dashed-box" id="append-content" style="float: left;">
+								<td class="wrap dashed-box append-content" id="append-content" style="float: left;">
 									<!-- Content append -->
 									
 								</td>
@@ -94,6 +94,7 @@
 		$(document).ready(function(e){
 			var number =0;
 			$('body').on('click','*[data-block]', function(e){
+				e.preventDefault();
 				content_data = $(this).data('block');
 				switch (content_data) {
 					case('b1-section'):
@@ -145,7 +146,19 @@
 						$('#append-content').append(html);
 						break;
 					case('b37-section'):
-						html =``;
+						html =`<table data-draggable class="wrap dashed-box">
+									<tbody class="wrap">
+										<tr class="wrap default">
+											<td colspan="1" class="b37-section dashed-box" data-id id="b37-section_${number++}"></td>
+											<td colspan="2" class="b37-section dashed-box" data-id id="b3-7section_${number++}"></td>
+										</tr>
+										<tr>
+											<td><div class="remove-section" data-remove_item>
+												<i class="fa fa-trash-o" aria-hidden="true"></i>
+											</div></td>
+										</tr>
+									</tbody>
+								</table>`;
 						$('#append-content').append(html);
 						break;
 					case('button-section'):
@@ -219,46 +232,56 @@
 						break;
 				}
 			});
-			$( function() {
+			$(function() {
+			    $( "#append-content" ).sortable();
+			    $( "#append-content" ).disableSelection();
+			});
+			$(function() {
 			    $( "#append-content" ).sortable();
 			    $( "#append-content" ).disableSelection();
 			});
 			$('body').on('mouseover', '*[data-draggable]', function(e) {
+				e.preventDefault();
 				element = $(this);
 				$(this).addClass('selected-item');
 				element.find('.remove-section').css('display','block');
 			});
 			$('body').on('mouseout', '*[data-draggable]', function(e) {
+				e.preventDefault();
 				element = $(this);
 				$(this).removeClass('selected-item');
 				element.find('.remove-section').css('display','none');
 			});
 			$('body').on('mouseover', '*[data-table_parent]', function(e) {
+				e.preventDefault();
 				element = $(this);
 				$(this).addClass('selected-item');
 				element.find('.remove-section').css('display','block');
 			});
 			$('body').on('mouseout', '*[data-table_parent]', function(e) {
+				e.preventDefault();
 				element = $(this);
 				$(this).removeClass('selected-item');
 				element.find('.remove-section').css('display','none');
 			});
 			$('body').on('click', '*[data-remove_item]', function(e){
+				e.preventDefault();
 				$(this).closest('*[data-draggable]').remove();
 			});
 			$('body').on('click', '*[data-remove_parent]', function(e){
+				e.preventDefault();
 				$(this).closest('*[data-table_parent]').remove();
 			});
-			$(function(element) {
-			    $(element).sortable();
-			    $(element ).disableSelection();
-			});
 		});
+	</script>
+	<script type="text/javascript">
+		
 	</script>
 	<!-- Copy data html email content -->
 	<script type="text/javascript">
 		$(document).ready(function(){
 			$('body').on('click', '*[data-save_content]', function(e){
+				e.preventDefault();
 				html = $(this).closest('#draggable-main').find('#sortable').html();
 				$(this).closest('#draggable-main').find('#sortable').prepend(html);
 			});

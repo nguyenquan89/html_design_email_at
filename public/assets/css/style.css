@@ -104,6 +104,16 @@ img {
     margin-right: 5px;
     margin-left: 5px; }
 
+.b37-section {
+  min-height: 200px; }
+  .b37-section:first-child {
+    width: 33%;
+    float: left; }
+  .b37-section:last-child {
+    width: 66%;
+    float: right;
+    margin-left: 1%; }
+
 .button-section .button {
   background: #6bc5a4;
   width: 100%;
