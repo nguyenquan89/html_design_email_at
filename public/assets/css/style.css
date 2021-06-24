@@ -95,6 +95,10 @@ img {
   .b2-section:nth-child(2n+2) {
     margin-left: 5px; }
 
+tr td img {
+  margin: auto;
+  object-fit: contain; }
+
 .b3-section {
   width: calc((100% - 10px)/3);
   float: left;

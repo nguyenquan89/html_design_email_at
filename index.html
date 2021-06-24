@@ -98,10 +98,10 @@
 				content_data = $(this).data('block');
 				switch (content_data) {
 					case('b1-section'):
-						html =`<table data-draggable class="b1-section wrap dashed-box">
+						html =`<table data-draggable class="b1-section table-parent wrap dashed-box">
 									<tbody class="wrap">
-										<tr>
-											<td class="b1-section dashed-box" id="b1-section_${number++}"></td>
+										<tr id="table-parent">
+											<td class="b1-section dashed-box" id="b1-section_${number++}" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
 										</tr>
 										<tr>
 											<td><div class="remove-section" data-remove_item>
@@ -113,9 +113,9 @@
 						$('#append-content').append(html);
 						break;
 					case('b2-section'):
-						html =`<table data-draggable class="wrap dashed-box">
+						html =`<table data-draggable class="wrap table-parent dashed-box">
 									<tbody class="wrap">
-										<tr class="wrap default">
+										<tr class="wrap default" id="table-parent">
 											<td class="b2-section dashed-box" id="b2-section_${number++}"></td>
 											<td class="b2-section dashed-box" id="b2-section_${number++}"></td>
 										</tr>
@@ -129,9 +129,9 @@
 						$('#append-content').append(html);
 						break;
 					case('b3-section'):
-						html =`<table data-draggable class="wrap dashed-box">
+						html =`<table data-draggable class="wrap table-parent dashed-box">
 									<tbody class="wrap">
-										<tr class="wrap default">
+										<tr class="wrap default" id="table-parent">
 											<td class="b3-section dashed-box" data-id id="b3-section_${number++}"></td>
 											<td class="b3-section dashed-box" data-id id="b3-section_${number++}"></td>
 											<td class="b3-section dashed-box" data-id id="b3-section_${number++}"></td>
@@ -148,7 +148,7 @@
 					case('b37-section'):
 						html =`<table data-draggable class="wrap dashed-box">
 									<tbody class="wrap">
-										<tr class="wrap default">
+										<tr class="wrap default" id="table-parent">
 											<td colspan="1" class="b37-section dashed-box" data-id id="b37-section_${number++}"></td>
 											<td colspan="2" class="b37-section dashed-box" data-id id="b3-7section_${number++}"></td>
 										</tr>
@@ -199,7 +199,7 @@
 						$('#append-content').append(html);
 						break;
 					case('image-section'):
-						html =`<table data-draggable class="image-section wrap dashed-box">
+						html =`<table data-draggable class="image-section wrap dashed-box" draggable="true" ondragstart="drag(event)">
 								<tbody class="wrap">
 									<tr align="center">
 										<td class="dashed-box">
@@ -232,19 +232,17 @@
 						break;
 				}
 			});
-			$(function() {
-			    $( "#append-content" ).sortable();
-			    $( "#append-content" ).disableSelection();
-			});
-			$(function() {
-			    $( "#append-content" ).sortable();
-			    $( "#append-content" ).disableSelection();
+			$( function() {
+			    $( ".table-parent, #append-content" ).sortable({
+			      	connectWith: ".connectedSortable"
+			    }).disableSelection();
 			});
 			$('body').on('mouseover', '*[data-draggable]', function(e) {
 				e.preventDefault();
 				element = $(this);
 				$(this).addClass('selected-item');
 				element.find('.remove-section').css('display','block');
+				// element.closest('#draggable-main')
 			});
 			$('body').on('mouseout', '*[data-draggable]', function(e) {
 				e.preventDefault();

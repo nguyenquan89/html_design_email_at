@@ -118,6 +118,14 @@ img {
 		margin-left: 5px;
 	}
 }
+tr {
+	td {
+		img {
+			margin: auto;
+			object-fit: contain;
+		}
+	}
+}
 
 .b3-section {
 	width: calc((100% - 10px)/3);
