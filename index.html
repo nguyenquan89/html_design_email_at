@@ -111,13 +111,14 @@
 									</tbody>
 								</table>`;
 						$('#append-content').append(html);
+						reload();
 						break;
 					case('b2-section'):
 						html =`<table data-draggable class="wrap table-parent dashed-box">
 									<tbody class="wrap">
 										<tr class="wrap default" id="table-parent">
-											<td class="b2-section dashed-box" id="b2-section_${number++}"></td>
-											<td class="b2-section dashed-box" id="b2-section_${number++}"></td>
+											<td class="b2-section dashed-box" id="b2-section_${number++}" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+											<td class="b2-section dashed-box" id="b2-section_${number++}" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
 										</tr>
 										<tr>
 											<td><div class="remove-section" data-remove_item>
@@ -127,6 +128,7 @@
 									</tbody>
 								</table>`;
 						$('#append-content').append(html);
+						reload();
 						break;
 					case('b3-section'):
 						html =`<table data-draggable class="wrap table-parent dashed-box">
@@ -144,6 +146,7 @@
 									</tbody>
 								</table>`;
 						$('#append-content').append(html);
+						reload();
 						break;
 					case('b37-section'):
 						html =`<table data-draggable class="wrap dashed-box">
@@ -160,9 +163,10 @@
 									</tbody>
 								</table>`;
 						$('#append-content').append(html);
+						reload();
 						break;
 					case('button-section'):
-						html =`<table data-draggable class="button-section wrap dashed-box">
+						html =`<table data-draggable draggable="true" class="button-section wrap dashed-box">
 									<tbody class="wrap">
 										<tr>
 											<td class="button dashed-box"><a class="wrap" href="#">Button</a></td>
@@ -175,9 +179,10 @@
 									</tbody>
 								</table>`;
 						$('#append-content').append(html);
+						reload();
 						break;
 					case('h1p-section'):
-						html =`<table data-draggable class="h1p-section dashed-box">
+						html =`<table data-draggable draggable="true" class="h1p-section dashed-box">
 									<tbody>
 										<tr>
 											<td class="title-text dashed-box">
@@ -197,9 +202,10 @@
 									</tbody>
 								</table>`;
 						$('#append-content').append(html);
+						reload();
 						break;
 					case('image-section'):
-						html =`<table data-draggable class="image-section wrap dashed-box" draggable="true" ondragstart="drag(event)">
+						html =`<table data-draggable draggable="true" ondragstart="drag(event)" class="image-section wrap dashed-box" draggable="true" ondragstart="drag(event)">
 								<tbody class="wrap">
 									<tr align="center">
 										<td class="dashed-box">
@@ -214,9 +220,10 @@
 								</tbody>
 							</table>`;
 						$('#append-content').append(html);
+						reload();
 						break;
 					case('text-section'):
-						html =`<table data-draggable class="text-section wrap dashed-box">
+						html =`<table data-draggable draggable="true" ondragstart="drag(event)" class="text-section wrap dashed-box">
 									<tbody class="dashed-box">
 										<tr>
 											<td class="dashed-box"><h2>Text title h2</h2></td>
@@ -229,6 +236,7 @@
 									</tbody>
 								</table>`;
 						$('#append-content').append(html);
+						reload();
 						break;
 				}
 			});
@@ -284,5 +292,24 @@
 				$(this).closest('#draggable-main').find('#sortable').prepend(html);
 			});
 		});
+	</script>
+	<script>
+		function reload() {
+			return [
+				function allowDrop(ev) {
+					ev.preventDefault();
+				},
+
+				function drag(ev) {
+					ev.dataTransfer.setData("text", ev.target.id);
+				},
+
+				function drop(ev) {
+					ev.preventDefault();
+					var data = ev.dataTransfer.getData("text");
+					ev.target.appendChild(document.getElementById(data));
+				},
+			];
+		}
 	</script>
 </html>
